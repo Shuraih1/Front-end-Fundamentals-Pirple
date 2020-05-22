@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2020 by Shuraih1 (http://jsbin.com/xugejur/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Muhammad Shuraih-Project</title>
+       
+    <style id="jsbin-css">
+* {
+    box-sizing: border-box;
+    
+}
+
+body {
+    background-color: lightgray;
+    font-family: Helvetica, sans-serif;
+}
+
+main,
+header,
+footer {
+    font-family: Helvetica, sans-serif;
+}
+
+header {
+    background-color: #4267b2;
+    height: 42px;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 12;
+    font-family: Helvetica, sans-serif;
+}
+
+header > i {
+    font-size: 28px;
+    margin-left: 30px;
+    margin-right: 5px;
+}
+
+.like-button{
+  display:inline-block;
+  color:#fff;
+  padding:5px 8px;
+  text-decoration:none;
+  font-size:0.8em;
+  border-radius:3px;
+  text-shadow:0 -1px 0 rgba(0,0,0,.2);
+ 
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4c69ba+0,3b55a0+100 */
+background: #4c69ba; /* Old browsers */
+background: -moz-linear-gradient(top,  #4c69ba 0%, #3b55a0 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #4c69ba 0%,#3b55a0 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #4c69ba 0%,#3b55a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c69ba', endColorstr='#3b55a0',GradientType=0 ); /* IE6-9 */
+
+}
+
+#title {
+    box-sizing: border-box;
+    height: 26px;
+    width: 100%;
+    max-width: 450px;
+    padding: 2px 5px;
+    margin: 0;
+    background: white;
+    border-radius: 2px;
+    font-size: 14px;
+    color: black;
+    font-weight: 100;
+    line-height: 24px;
+    border: none;
+    display: block;
+}
+#postsTag {
+    color: #606770;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16.08px;
+    display:inline-block;
+}
+
+.post-container {
+    background-color: white;
+    border: solid 1px rgb(221, 223, 226);
+    border-radius: 3px;
+    width: 500px;
+    padding: 12px;
+    padding-bottom: 0;
+    margin: 10px;
+    font-family: Helvetica, sans-serif;
+}
+
+.post-meta {
+    display: flex;
+}
+.meta-profile {
+    background-size: 110% 110%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+}
+.meta-profile.user {
+    background-image: url("resources/teacher.png");
+    filter: brightness(85%);
+}
+.meta-profile.wikipedia {
+    background-image: url("resources/wikipedia.png");
+}
+.meta-profile.stackoverflow {
+    background-image: url("resources/stackoverflow.png");
+    filter: brightness(85%);
+}
+
+.meta-profile > div {
+    box-sizing: content-box;
+    background-color: #999;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    height: 9px;
+    left: 76%;
+    position: absolute;
+    top: 68%;
+    width: 9px;
+    z-index: 1;
+    filter: brightness(120%);
+}
+
+.meta-profile > .active {
+    background-color: #42b72a;
+}
+
+.meta-title {
+    display: flex;
+    flex-direction: column;
+}
+.meta-title > *:hover {
+    text-decoration-line: underline;
+}
+
+.post-title {
+    font-family: "Helvetica";
+    color: #385898;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19.32px;
+    margin-bottom: 2px;
+}
+.post-time {
+    color: #616770;
+    font-size: 12px;
+}
+
+.post-body {
+    margin-top: 6px;
+}
+
+.post-body > h1 {
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.post-body > p {
+    font-size: 14px;
+    line-height: 19.32px;
+}
+
+.post-body > p > a,
+.post-body > p > .emphasize {
+    text-decoration: solid;
+    text-decoration-line: none;
+    color: #385989;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.post-comments {
+    border-top: solid 1px rgb(218, 221, 225);
+    margin: initial -10px;
+    padding: 8px 12px 4px;
+    display: flex;
+}
+
+.comment-profile {
+    margin-right: 6px;
+    height: 32px;
+    width: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-size: 110% 110%;
+}
+.comment-profile.user {
+    background-image: url("resources/teacher.png");
+    filter: brightness(85%);
+}
+
+.comment-body {
+    padding: 0px 10px;
+    font-size: 13px;
+    line-height: 16px;
+}
+.comment-profile-name {
+    color: #385989;
+    font-weight: 600;
+}
+.comment-profile-name:hover {
+    text-decoration-line: underline;
+}
+.comment-controls {
+    margin-top: 8px;
+    padding-bottom: 8px;
+    color: #385989;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.poll {
+    display: flex;
+    flex-direction: column;
+}
+.poll > label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px rgb(204, 208, 213);
+    padding: 7.5px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    margin-bottom: 8px;
+}
+.poll > label:hover {
+    background-color: #ebedf0;
+}
+
+.poll > input:checked + label {
+    border-color: #4267b2;
+    color: #4267b2;
+    border-width: 2px;
+    padding: 6.5px 11px;
+}
+</style>
+</head>
+    <script>
+        function reveal(show) {
+            var el = document.getElementById("reveal");
+            if (show) {
+                el.style.opacity = "1";
+                document.getElementById("scroll").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest"
+                });
+            } else el.style.opacity = "0";
+        }
+    </script>
+    <body>
+        <header>
+            <i class="fab fa-facebook-square"></i>
+            <input id="title" value="Inspiration to study further" />
+        </header>
+        <main>
+            <span id="postsTag">My Pirple Story!</span>
+            <a class="like-button" href="#">Like<a>
+            <div class="post-container">
+                <div class="post-meta">
+                    <div class="meta-profile user"><div class=""></div></div>
+                    <div class="meta-title">
+                        <span class="post-title">Front-end Fundamentals</span>
+                        <span class="post-time">21 May at 20:46</span>
+                    </div>
+                </div>
+                <div class="post-body">
+                    <p>
+                      During my final 3 years at <b>Nasrudding Islaamic School</b>, I learnt the basics of HTML language. During my learning Curve I discovered 
+                        <a href="https://stackoverflow.com/">StackOverflow</a>. I learnt about this very 
+                        <b>amazing</b> site in a very amazing way....and that is through memes!🤯😂 
+                    </p>
+                    <p>
+                         I began to implement new ways into making my HTML website <b><i> stand out </i></b>, and outclassed all my class mates. The top students then figured 
+                         there was more to HTML than the basics we where thought at school. We all began to learn in a competive way.
+                        <span class="emphasize">My site looked amazing!</span> however, it was pretty much copy and paste😅
+                    </p>
+                </div>
+            </div>
+
+            <div class="post-container">
+                <div class="post-meta">
+                    <div class="meta-profile wikipedia"><div class="active"></div></div>
+                    <div class="meta-title">
+                        <span class="post-title">In search for understanding</span>
+                        <span class="post-time">21 May at 20:49</span>
+                    </div>
+                </div>
+                <div class="post-body">
+                    <p>
+                        Curiousity had entered my mind, and I would not rest until I figured out a clear understanding of HTML and CSS styling.
+                        My Gap year to study and complete the memorization of the holy book also became an opportunity for me to further my understanding of the field in which I want to study.
+                        I came accross <b>Front end Fundamentals</b> by <em>Pirple</em> and immediatly applied.
+                        From experiance and practice I can confidantly say that this course has completed my basic understanding of what I had originally learnt in my Schooling career.
+                    </p>
+                </div>
+                <div class="post-comments">
+                    <div class="comment-profile user"><div class="active"></div></div>
+                    <div class="comment-body">
+                        <span class="comment-profile-name">Front-end Fundamentals</span>
+                        
+                        <div class="comment-controls"><a>Like</a>&nbsp;&nbsp;-&nbsp;&nbsp;<a>Reply</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post-container" id="scroll">
+                <div class="post-meta">
+                    <div class="meta-profile user"><div class=""></div></div>
+                    <div class="meta-title">
+                        <span class="post-title">Want to learn Front end Fundamentals?</span>
+                        <span class="post-time">22 May at 11:22</span>
+                    </div>
+                </div>
+                <div class="post-body">
+                    <p>
+                        
+                    </p>
+                    <p>
+                        
+                    </p>
+                    <div class="poll">
+                        <input id="option-yes" type="radio" name="show-post" hidden onchange="reveal(true);" /><label
+                            for="option-yes"
+                            >Yes</label
+                        >
+                        <input id="option-no" type="radio" name="show-post" hidden onchange="reveal(false);" /><label
+                            for="option-no"
+                            >No</label
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div id="reveal" class="post-container" style="opacity: 0; transition: all 0.5s">
+                <div class="post-meta">
+                    <div class="meta-profile stackoverflow"><div class="active"></div></div>
+                    <div class="meta-title">
+                        <span class="post-title">Pirple.com</span>
+                        <span class="post-time">22 May at 11:22</span>
+                    </div>
+                </div>
+                <div class="post-body">
+                    <p>
+                        <a>
+                            https://www.pirple.com/enrollments
+                        </a>
+                    </p>
+                    <img src="resources/princessfull.png" alt="" />
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
